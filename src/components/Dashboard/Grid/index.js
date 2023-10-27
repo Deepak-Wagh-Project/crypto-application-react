@@ -47,15 +47,15 @@ const Grid=({coin,i})=>{
                     color:
                     coin.price_change_percentage_24h>0?
                     "var(--green)":"var(--red)"}}>
-                    INR:{coin.current_price.toLocaleString()}
+                    $:{coin.current_price.toLocaleString()}
                   </h3>
                   <p className="total-volume">
                     Total Volume : 
-                    INR{coin.total_volume.toLocaleString()}
+                    ${coin.total_volume.toLocaleString()}
                   </p>
                   <p className="market-cap">
                     Market cap :
-                    INR{coin.market_cap.toLocaleString()}
+                    ${coin.market_cap.toLocaleString()}
                   </p>
                  </div>
                 

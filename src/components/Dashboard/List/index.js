@@ -60,19 +60,19 @@ const List=({coin,i})=>{
                     color:
                     coin.price_change_percentage_24h>0?
                     "var(--green)":"var(--red)"}}>
-                    INR:{coin.current_price.toLocaleString()}
+                    $:{coin.current_price.toLocaleString()}
                   </td>
                   </Tooltip>
                   <Tooltip title="Total volume">
                   <td className="total-volume">
                     
-                    INR{coin.total_volume.toLocaleString()}
+                    ${coin.total_volume.toLocaleString()}
                   </td>
                   </Tooltip>
                   <Tooltip title="Market Cap">
                   <td className="market-cap">
                     
-                    INR{coin.market_cap.toLocaleString()}
+                    ${coin.market_cap.toLocaleString()}
                   </td>
                   </Tooltip>
               
