@@ -1,0 +1,5 @@
+.toggle-prices{
+    display: flex;
+    justify-content: center;
+    color: var(--blue);
+}

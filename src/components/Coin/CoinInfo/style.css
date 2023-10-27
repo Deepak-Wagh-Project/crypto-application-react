@@ -1,0 +1,9 @@
+.coin-info-desc{
+    margin: 1rem;
+}
+.coin-info-desc a{
+   color: var(--blue);
+}
+.coin-info-desc span{
+    cursor: pointer;
+}

@@ -1,0 +1,8 @@
+.grey-wrapper{
+    display: block;
+    width: 90%;
+    background-color: var(--darkgrey);
+    margin: 1.5rem auto;
+    border-radius: 0.5rem;
+    padding: 0rem 0.5rem;
+}

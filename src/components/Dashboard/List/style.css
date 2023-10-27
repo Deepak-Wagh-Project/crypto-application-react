@@ -1,0 +1,62 @@
+.list-row{
+    display: flex;
+    justify-content: space-between;
+    justify-items: start;
+    align-items: center;
+    margin: 0.3rem;
+    padding: 0.2rem 1rem;
+    border-radius: 1rem;
+    
+}
+.list-row:hover{
+    background-color: var(--darkgrey);
+    transition: 0.3s;
+}
+.list-row td{
+    text-align: left;
+    width: 18%;
+}
+.td-image{
+    width: 3rem;
+}
+.price-chip{
+   
+    padding: 0.1rem 0.3rem;
+    font-size: 1rem;
+}
+
+
+.icon-chip{
+   height: 1.4rem;
+   width: 1.4rem;
+   
+}
+
+.total-volume , .market-cap{
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--white);
+}
+
+@media screen and (max-width: 800px){
+  .icon-chip{
+    display: none;
+  }
+  .total-volume{
+    display: none;
+  }
+  .td-image{
+    width: 1.5rem;
+}
+.price-chip{
+   
+    padding: 0.05rem 0.1rem;
+    font-size: 0.8rem;
+}
+.coin-price{
+    font-size: 0.8rem;
+}
+.coin-symbol{
+    font-size: 1rem;
+}
+}

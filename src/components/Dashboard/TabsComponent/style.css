@@ -1,0 +1,12 @@
+.grid-flex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 1rem;
+}
+.list-table{
+    width: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
