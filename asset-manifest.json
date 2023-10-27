@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/crypto-application-react/static/css/main.5acf7b8c.css",
-    "main.js": "/crypto-application-react/static/js/main.6849a9ec.js",
+    "main.js": "/crypto-application-react/static/js/main.456e7c20.js",
     "static/media/iphone.png": "/crypto-application-react/static/media/iphone.080029ada53f0cd57453.png",
     "static/media/gradient.png": "/crypto-application-react/static/media/gradient.12a666ed10b3b442b534.png",
     "index.html": "/crypto-application-react/index.html",
     "main.5acf7b8c.css.map": "/crypto-application-react/static/css/main.5acf7b8c.css.map",
-    "main.6849a9ec.js.map": "/crypto-application-react/static/js/main.6849a9ec.js.map"
+    "main.456e7c20.js.map": "/crypto-application-react/static/js/main.456e7c20.js.map"
   },
   "entrypoints": [
     "static/css/main.5acf7b8c.css",
-    "static/js/main.6849a9ec.js"
+    "static/js/main.456e7c20.js"
   ]
 }
