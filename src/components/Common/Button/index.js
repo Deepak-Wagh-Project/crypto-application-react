@@ -2,15 +2,15 @@ import React from "react";
 import "./style.css"
 import { useNavigate } from "react-router-dom";
 
-const Button=({text,handleOnClick,outline})=>{
+const Button=({text,outline,handleOnClick})=>{
 const navigate=useNavigate()
-
+ function changePage(){
     if(handleOnClick){
-        navigate("/dashboard")
+        navigate(handleOnClick)
     }
+ }
 
-
-    return(<button className= {outline?"outline-btn":"btn"} onClick={()=>navigate("/dashboard")}>{text}</button>)
+    return(<button className= {outline?"outline-btn":"btn"} onClick={()=>changePage()}>{text}</button>)
 }
 
 export default Button;

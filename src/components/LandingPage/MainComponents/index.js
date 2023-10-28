@@ -29,7 +29,7 @@ const MainComponent=()=>{
              Visit the dashboard to do so!
              </motion.p>
              <div className="btn-flex">
-                <Button text={"Dashboard"} navigate={navigate} />
+                <Button text={"Dashboard"}  outline={false} handleOnClick={"/dashboard"} />
                 <Button text={"Share"} outline={true} />
              </div>
         </div>

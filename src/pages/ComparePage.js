@@ -33,18 +33,30 @@ function ComparePage() {
     getCoinsData();
   }, []);
 
+  async function handleDaysChange(event){
+    setLoading(true)
+        setDays(event.target.value)
+        const prices1=await getCoinPrices(coin1,event.target.value,priceType);
+                const prices2=await getCoinPrices(coin2,event.target.value,priceType);
+                settingChartData(setChartData,prices1,prices2)
+             setLoading(false)
+    }
+
   const getCoinsData = async () => {
     const response = await get100Coins();
     setAllCoins(response);
 
-    const data1 = await getCoinData(coin1);
-    const data2 = await getCoinData(coin2);
+    const data1 = await getCoinData("bitcoin");
+    const data2 = await getCoinData("ethereum");
 
     if (data1) {
+
       convertObject(setCoinData1, data1);
+      console.log("data1 is below",coinData1)
     }
     if (data2) {
         convertObject(setCoinData2, data2);
+        console.log("data2 is below",coinData1)
     }
     getPrices(coin1, coin2, days, priceType);
     setLoading(false);
@@ -54,12 +66,14 @@ function ComparePage() {
     const prices1 = await getCoinPrices(coin1, days, priceType);
     const prices2 = await getCoinPrices(coin2, days, priceType);
     settingChartData(setChartData, prices1, prices2);
+    console.log(chartData)
   };
 
   const handleCoinChange = async (e, isCoin2) => {
     if (!isCoin2) {
       setCoin1(e.target.value);
       const data1 = await getCoinData(e.target.value);
+      console.log("data1 is below",data1)
       if (data1) {
         convertObject(setCoinData1, data1);
         getPrices(e.target.value, coin2, days, priceType);
@@ -67,6 +81,7 @@ function ComparePage() {
     } else {
       setCoin2(e.target.value);
       const data2 = await getCoinData(e.target.value);
+      console.log("data2 is below",data2)
       if (data2) {
         convertObject(setCoinData2, data2);
         getPrices(coin1, e.target.value, days, priceType);
@@ -82,33 +97,17 @@ function ComparePage() {
   return (
     <>
       <Header />
-      {/* <div className="grey-container">
-            <List coin={coinData1} />
-          </div>
-          <div className="grey-container">
-            <List coin={coinData2} />
-          </div> */}
+      
+            
+          
       <div className="div-flex">
       
-        {/* <SelectCoins
-          coin={coin1}
-          handleChange={(e) => handleCoinChange(e)}
-          allCoins={allCoins.filter((coin) => coin.id != coin2)}
-        />
+      <SelectCoins crypto1={coin1} crypto2={coin2}
+      handleCoinChange={(e)=>handleCoinChange(e)}/>
      
-        <SelectCoins
-          coin={coin2}
-          handleChange={(e) => handleCoinChange(e, true)}
-          allCoins={allCoins.filter((coin) => coin.id != coin1)}
-        /> */}
-        {/* <SelectDays
-          noText={true}
-          days={days}
-          handleChange={(e) => {
-            setDays(e.target.value);
-            getPrices(coin1, coin2, e.target.value, priceType);
-          }}
-        /> */}
+      
+     <SelectDays days={days} handleDaysChange={handleDaysChange}/>
+        
       </div>
       {loading ? (
         <Loader />
@@ -132,6 +131,11 @@ function ComparePage() {
           <div className="grey-container" style={{ marginBottom: "2rem" }}>
             <CoinInfo name={coinData2.name} desc={coinData2.desc} />
           </div>
+
+          <List coin={coinData1} i={1}/>
+          
+          
+            <List coin={coinData2} i={2} />
         </>
       )}
     

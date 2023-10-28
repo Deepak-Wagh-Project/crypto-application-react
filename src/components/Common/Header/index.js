@@ -12,8 +12,9 @@ const Header=()=>{
        <NavLink to="/" className="link"><p>Home</p></NavLink>
        <NavLink to="/compare" className="link"><p>Compare</p></NavLink>
       <Button text={"Dashboard"}
-        onClick={true}
-        outline={true}
+      
+        outline={false}
+        handleOnClick={"/dashboard"}
         />
 
      </div>

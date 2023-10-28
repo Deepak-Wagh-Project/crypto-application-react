@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./style.css"
 
-const CoinInfo=({heading,desc})=>{
+const CoinInfo=({name,desc})=>{
        const [flag,setFlag]=useState(false)
        
        const shortDesc=desc.slice(0,200)+"<span  style='color:var(--grey)'>Read More...</span>";
@@ -10,7 +10,7 @@ const CoinInfo=({heading,desc})=>{
       
 
     return(<div className="grey-wrapper" >
-        <h2 className="coin-info-heading">{heading}</h2>
+        <h2 className="coin-info-heading">{name}</h2>
         {
         
         
