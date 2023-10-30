@@ -3,13 +3,13 @@ import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import "./style.css"
 
-export default function PriceType({priceType,handlePriceTypeChange}) {
+export default function TogglePriceType({newType,handlePriceTypeChange}) {
 
 
   return (
     <div className='toggle-prices'>
     <ToggleButtonGroup
-      value={priceType}
+      value={newType}
       exclusive
       onChange={handlePriceTypeChange}
      

@@ -29,7 +29,7 @@ export default function TabsComponent({coins}) {
       <TabContext value={value}>
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <TabList onChange={handleChange} variant='fullWidth'>
-            <Tab label="Grird" value="grid" sx={style} />
+            <Tab label="Grid" value="grid" sx={style} />
             <Tab label="List" value="list"  sx={style}/>
           
           </TabList>

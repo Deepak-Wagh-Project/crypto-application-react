@@ -12,22 +12,29 @@ import LineChart from "../components/Coin/LineChart";
 import { convertDate } from "../functions/convertDate";
 import SelectDays from "../components/Coin/SelectDays";
 import { settingChartData } from "../functions/settingChartData";
-import PriceType from "../components/Coin/PriceType";
+import PriceType from "../components/Coin/TogglePriceType";
 
 
 const CoinPage=()=>{
+  const {id}=useParams()
+  const[coinData,setCoinData]=useState();
+  const[days,setDays]=useState(7);
   const [priceType, setPriceType] = useState("prices");
-    const {id}=useParams()
+  
     const[isLoading,setLoading]=useState(true)
-    const[coinData,setCoinData]=useState();
-    const[days,setDays]=useState(7);
-    const [chartData,setChartData]=useState();
+   
+   
+    const [chartData,setChartData]=useState({
+      labels: [],
+      datasets: [{}],
+    });
    
     useEffect(()=>{
+     
       if(id){
         getData()
       }
-        
+       
          },[id])  
 
 
@@ -44,16 +51,19 @@ const CoinPage=()=>{
         };
 
     const handlePriceTypeChange = async (event, newType) => {
+   
       setLoading(true);
+     
       setPriceType(newType);
 
       const prices=await getCoinPrices(id,days,newType);
+      console.log("prices for graph",prices)
       if(prices.length>0){
         settingChartData(setChartData,prices);
           setLoading(false);
-          console.log(prices)
+         
       }
-      console.log(newType)
+      
     };
 
     
@@ -94,7 +104,7 @@ const CoinPage=()=>{
     </div>
     
 
-    <CoinInfo heading={coinData.name} 
+    <CoinInfo name={coinData.name} 
     desc={coinData.desc}/>
     </>
    

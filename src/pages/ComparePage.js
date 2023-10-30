@@ -3,7 +3,7 @@ import LineChart from "../components/Coin/LineChart";
 import CoinInfo from "../components/Coin/CoinInfo";
 import SelectCoins from "../components/Compare/SelectCoins";
 import SelectDays from "../components/Coin/SelectDays";
-import PriceType from "../components/Coin/PriceType";
+import TogglePriceType from "../components/Coin/TogglePriceType";
 import Footer from "../components/Common/Footer";
 import Header from "../components/Common/Header";
 import Loader from "../components/Common/Loader";
@@ -69,29 +69,47 @@ function ComparePage() {
     console.log(chartData)
   };
 
-  const handleCoinChange = async (e, isCoin2) => {
-    if (!isCoin2) {
-      setCoin1(e.target.value);
-      const data1 = await getCoinData(e.target.value);
-      console.log("data1 is below",data1)
-      if (data1) {
-        convertObject(setCoinData1, data1);
-        getPrices(e.target.value, coin2, days, priceType);
-      }
-    } else {
-      setCoin2(e.target.value);
-      const data2 = await getCoinData(e.target.value);
-      console.log("data2 is below",data2)
-      if (data2) {
-        convertObject(setCoinData2, data2);
-        getPrices(coin1, e.target.value, days, priceType);
-      }
+  const handleCoinChange= async(event, isCrypto2)=>{
+    setLoading(true)
+    if(isCrypto2){
+        setCoin2(event.target.value)
+      
+        const data=await getCoinData(event.target.value);
+        if(data){
+          
+            convertObject(setCoinData2,data);
+            const prices1=await getCoinPrices(coin1,days,priceType);
+            const prices2=await getCoinPrices(event.target.value,days,priceType);
+            settingChartData(setChartData,prices1,prices2)
+         
+          }
     }
-  };
+    else{
+        setCoin1(event.target.value)
+        const data=await getCoinData(event.target.value);
+        if(data){
+          
+         convertObject(setCoinData1,data);
+         const prices1=await getCoinPrices(event.target.value,days,priceType);
+            const prices2=await getCoinPrices(coin2,days,priceType);
+            settingChartData(setChartData,prices1,prices2)
+         
+        }
+    }
+    setLoading(false)
+   
+}
 
-  const handlePriceChange = (event) => {
+  const handlePriceChange = async (event) => {
+        
+   
+    setLoading(true);
     setPriceType(event.target.value);
-    getPrices(coin1, coin2, days, event.target.value);
+
+    const prices1=await getCoinPrices(coin1,days,event.target.value);
+            const prices2=await getCoinPrices(coin2,days,event.target.value);
+            settingChartData(setChartData,prices1,prices2)
+            setLoading(false);
   };
 
   return (
@@ -103,7 +121,8 @@ function ComparePage() {
       <div className="div-flex">
       
       <SelectCoins crypto1={coin1} crypto2={coin2}
-      handleCoinChange={(e)=>handleCoinChange(e)}/>
+      handleCoinChange={handleCoinChange}/>
+      
      
       
      <SelectDays days={days} handleDaysChange={handleDaysChange}/>
@@ -113,15 +132,20 @@ function ComparePage() {
         <Loader />
       ) : (
         <>
+        
+        <List coin={coinData1} i={1}/>
+          
+          
+          <List coin={coinData2} i={2} />
          
           <div className="grey-container">
-            <PriceType
-              priceType={priceType}
-              handleChange={handlePriceChange}
+            <TogglePriceType
+              newType={priceType}
+              handlePriceTypeChange={handlePriceChange}
             />
             <LineChart
               chartData={chartData}
-              mutliAxis={true}
+              multiAxis={true}
               priceType={priceType}
             />
           </div>
@@ -132,10 +156,6 @@ function ComparePage() {
             <CoinInfo name={coinData2.name} desc={coinData2.desc} />
           </div>
 
-          <List coin={coinData1} i={1}/>
-          
-          
-            <List coin={coinData2} i={2} />
         </>
       )}
     
