@@ -45,7 +45,13 @@ const DashBoard=()=>{
          <BackToTop/>
          {  isLoading? (<Loader/>):(<div>
         <Search search={search} onChangeSearch={onChangeSearch}/>
+        {search&&filteredCoins.length===0?<div><h1 style={{ textAlign: "center" }}>No Results Found</h1>
+              <p style={{ textAlign: "center", color: "var(--grey)" }}>
+                Could not find what you were looking for...
+              </p></div>:
+        
         <TabsComponent coins={search?filteredCoins:paginatedCoins}/>
+        }
         {!search&&
         <PaginationComponent page={page} handleChange={(e,value)=>handleChange(e,value)}/>
        
