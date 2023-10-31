@@ -56,6 +56,7 @@ const Header=()=>{
         />
        <NavLink to="/" className="link"><p>Home</p></NavLink>
        <NavLink to="/compare" className="link"><p>Compare</p></NavLink>
+       {/* <NavLink to="/watchlist" className="link"><p>Watchlist</p></NavLink> */}
       <Button text={"Dashboard"}
       
         outline={false}
