@@ -30,7 +30,7 @@ const MainComponent=()=>{
              </motion.p>
              <div className="btn-flex">
                 <Button text={"Dashboard"}  outline={false} handleOnClick={"/dashboard"} />
-                <Button text={"Share"} outline={true} />
+               {/* { <Button text={"Share"} outline={true} />} */}
              </div>
         </div>
         <div className="phone-container">

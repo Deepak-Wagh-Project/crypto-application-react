@@ -1,12 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css"
-import { Link, useParams } from "react-router-dom";
+import BookmarkBorderRoundedIcon from '@mui/icons-material/BookmarkBorderRounded';
+import { Link, useParams,useNavigate } from "react-router-dom";
 import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
 import TrendingDownRoundedIcon from '@mui/icons-material/TrendingDownRounded';
+import addItemInWatchlist from "../../../functions/addItemInWatchlist";
+import { addToWatchlist, removeFromWatchlist } from "../../../functions/watchlist";
+import { IconButton } from "@mui/material";
 const Grid=({coin,i})=>{
- // const {id}=useParams();
+  const {id}=useParams();
+  const navigate=useNavigate();
+ const[isSelectedWatchlist,setSelectedWatchlist]=useState(false);
+  // const isWatchlist = localStorage.getItem("watchlist")
+  // ? localStorage.getItem("watchlist").includes(coin.id)
+  // : false;
+const [isAdded, setIsAdded] = useState(false);
+  function handleClick(){
+    navigate(`/coin/${coin.id}`);
+  }
+  // const parentRef = useRef(null);
+  // const childRef = useRef(null);
+
+  // // Event handler for the parent element
+  // const handleParentClick = () => {
+  //   console.log('Parent element clicked!');
+  // };
+
+  // // Event handler for the child element
+  // const handleChildClick = () => {
+  //   console.log('Child element clicked!');
+  // };
+
+  // // Function to trigger the event for the child element
+  // const triggerChildEvent = () => {
+  //   // Check if the childRef is defined before triggering the event
+  //   if (childRef.current) {
+  //     childRef.current.click();
+  //   }
+  // };
     return(
-    <Link to={`/coin/${coin.id}`}>
+      // <div to={`/coin/${coin.id}`}>
+    <div onClick={handleClick}>
     <div className={`grid-container ${coin.price_change_percentage_24h<0&&"grid-container-red"}`}>
         <div className="info-flex">
             <img src={coin.image} className="coin-logo"/>
@@ -18,7 +52,33 @@ const Grid=({coin,i})=>{
                     {coin.name}
                 </p>
             </div>
-            
+            {/* {isWatchlist || isAdded ? (
+          <div
+            className="bookmark-icon-div"
+            onClick={(e) => {
+              setIsAdded(false);
+              removeFromWatchlist(coin.id);
+              e.stopPropagation()
+            }}
+          >
+            <IconButton>
+              <BookmarkBorderRoundedIcon className="bookmark-icon" />
+            </IconButton>
+          </div>
+        ) : (
+          <div
+            className="bookmark-icon-div"
+            onClick={(e) => {
+              setIsAdded(true);
+              addToWatchlist(coin.id);
+              e.stopPropagation()
+            }}
+          >
+            <IconButton>
+              <BookmarkBorderRoundedIcon className="bookmark-icon" />{" "}
+            </IconButton>
+          </div>
+        )} */}
         </div>
         
             {coin.price_change_percentage_24h>0?
@@ -29,6 +89,12 @@ const Grid=({coin,i})=>{
                   }%
                   </div>
                   <div className="icon-chip chip-green" ><TrendingUpRoundedIcon/></div>
+                  <div className="bookmark-icon" onClick={(e)=>{
+                    addItemInWatchlist(coin,setSelectedWatchlist)
+                    e.stopPropagation()
+                    }}>
+                    <BookmarkBorderRoundedIcon/>
+                  </div>
                   </div>:
                    <div className="chip-flex">
                   <div className="price-chip chip-red">
@@ -37,6 +103,12 @@ const Grid=({coin,i})=>{
                   }%
                   </div>
                   <div className="icon-chip chip-red"><TrendingDownRoundedIcon/></div>
+                  <div className="bookmark-icon" onClick={(e)=>{
+                    addItemInWatchlist(coin,setSelectedWatchlist)
+                    e.stopPropagation()
+                    }}>
+                    <BookmarkBorderRoundedIcon/>
+                  </div>
                   
                  
                    </div>
@@ -61,7 +133,7 @@ const Grid=({coin,i})=>{
                 
                 
             </div>
-            </Link>
+            </div>
          )
 }
 

@@ -102,3 +102,26 @@
     font-weight: 600;
     color: var(--grey);
 }
+.selected{
+    color: red;
+}
+.not-selected{
+    color: green;
+}
+.bookmark-icon-div {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--blue);
+    border-radius: 50%;
+    margin-left: auto;
+    cursor: pointer;
+  }
+  
+  .bookmark-icon {
+    color: var(--blue);
+    /* font-size: 1rem !important; */
+  }
+  

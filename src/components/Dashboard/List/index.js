@@ -1,9 +1,11 @@
 import React from "react";
 import "./style.css"
+import BookmarkBorderRoundedIcon from '@mui/icons-material/BookmarkBorderRounded';
 import TrendingUpRoundedIcon from '@mui/icons-material/TrendingUpRounded';
 import TrendingDownRoundedIcon from '@mui/icons-material/TrendingDownRounded';
 import Tooltip from '@mui/material/Tooltip';
 import { Link } from "react-router-dom";
+import addItemInWatchlist from "../../../functions/addItemInWatchlist";
 
 const List=({coin,i})=>{
   console.log(coin)
@@ -41,6 +43,12 @@ const List=({coin,i})=>{
                   }%
                   </div>
                   <div className="icon-chip chip-green" ><TrendingUpRoundedIcon/></div>
+                  <div className="bookmark-icon" onClick={(e)=>{
+                    addItemInWatchlist(coin)
+                    e.stopPropagation()
+                    }}>
+                    <BookmarkBorderRoundedIcon/>
+                  </div>
                   </td>:
                    <td className="chip-flex">
                   <div className="price-chip chip-red">
@@ -49,7 +57,12 @@ const List=({coin,i})=>{
                   }%
                   </div>
                   <div className="icon-chip chip-red"><TrendingDownRoundedIcon/></div>
-                  
+                  <div className="bookmark-icon" onClick={(e)=>{
+                    addItemInWatchlist(coin)
+                    e.stopPropagation()
+                    }}>
+                    <BookmarkBorderRoundedIcon/>
+                  </div>
                  
                    </td>
                  }

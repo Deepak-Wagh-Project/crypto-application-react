@@ -1,7 +1,7 @@
 import { convertDate } from "./convertDate"
 import { convertNumbers } from "./convertNumber"
 
-export const settingChartData=(setChartData,prices1,prices2)=>{
+export const settingChartData=(setChartData,prices1,prices2,coinvalue)=>{
 
   if(prices2){
     setChartData( {
@@ -39,7 +39,7 @@ export const settingChartData=(setChartData,prices1,prices2)=>{
           backgroundColor:
           "rgba(58,128,233,0.1)",
           fill:true,
-          borderColor: '#3a80e9',
+          borderColor: coinvalue>0?'green':'red',
           borderWidth:1,
           pointRadius:0,
           tension:0.25,

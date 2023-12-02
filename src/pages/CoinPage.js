@@ -43,7 +43,7 @@ const CoinPage=()=>{
           setDays(event.target.value);
           const prices=await getCoinPrices(id,event.target.value ,priceType);
           if(prices.length>0){
-            settingChartData(setChartData,prices);
+            settingChartData(setChartData,prices,false,coinData.price_change_percentage_24h);
               setLoading(false);
               console.log(prices)}
           
@@ -59,7 +59,7 @@ const CoinPage=()=>{
       const prices=await getCoinPrices(id,days,newType);
       console.log("prices for graph",prices)
       if(prices.length>0){
-        settingChartData(setChartData,prices);
+        settingChartData(setChartData,prices,false,coinData.price_change_percentage_24h);
           setLoading(false);
          
       }
@@ -77,7 +77,7 @@ const CoinPage=()=>{
                 convertObject(setCoinData,data)
                 const prices=await getCoinPrices(id,days,priceType);
                 if(prices.length>0){
-                  settingChartData(setChartData,prices)
+                  settingChartData(setChartData,prices,false,data.market_data.price_change_percentage_24h)
                   setLoading(false)
                 }
                 
