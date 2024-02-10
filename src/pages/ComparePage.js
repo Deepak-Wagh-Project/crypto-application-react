@@ -47,8 +47,9 @@ function ComparePage() {
     setAllCoins(response);
 
     const data1 = await getCoinData("bitcoin");
+    console.log(data1);
     const data2 = await getCoinData("ethereum");
-
+    console.log(data2);
     if (data1) {
 
       convertObject(setCoinData1, data1);
